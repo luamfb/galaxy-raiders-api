@@ -21,7 +21,7 @@ data class Vector2D(val dx: Double, val dy: Double) {
     get() = INVALID_DOUBLE
 
   val unit: Vector2D
-    get() = INVALID_VECTOR
+    get() = this / this.magnitude
 
   val normal: Vector2D
     get() = INVALID_VECTOR
