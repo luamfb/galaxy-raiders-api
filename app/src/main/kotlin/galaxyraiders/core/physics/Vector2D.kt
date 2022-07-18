@@ -7,6 +7,8 @@ import kotlin.math.pow
 import kotlin.math.sign
 import kotlin.math.sqrt
 
+const val RADIAN_TO_DEGREES_FACTOR = 180.0 / Math.PI
+
 @JsonIgnoreProperties("unit", "normal", "degree", "magnitude")
 data class Vector2D(val dx: Double, val dy: Double) {
   override fun toString(): String {
@@ -28,7 +30,7 @@ data class Vector2D(val dx: Double, val dy: Double) {
     }
 
   val degree: Double
-    get() = INVALID_DOUBLE
+    get() = radiant * RADIAN_TO_DEGREES_FACTOR
 
   val unit: Vector2D
     get() = this / this.magnitude
