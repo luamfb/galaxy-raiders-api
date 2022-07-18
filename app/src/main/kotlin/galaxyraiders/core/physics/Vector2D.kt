@@ -25,7 +25,7 @@ data class Vector2D(val dx: Double, val dy: Double) {
     get() = INVALID_VECTOR
 
   operator fun times(scalar: Double): Vector2D {
-    return INVALID_VECTOR
+    return Vector2D(dx * scalar, dy * scalar)
   }
 
   operator fun div(scalar: Double): Vector2D {
