@@ -45,7 +45,7 @@ data class Vector2D(val dx: Double, val dy: Double) {
   }
 
   operator fun unaryMinus(): Vector2D {
-    return INVALID_VECTOR
+    return Vector2D(-dx, -dy)
   }
 
   operator fun minus(v: Vector2D): Vector2D {
