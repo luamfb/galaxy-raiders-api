@@ -7,7 +7,7 @@ data class Point2D(val x: Double, val y: Double) {
   }
 
   operator fun plus(v: Vector2D): Point2D {
-    return INVALID_POINT
+    return Point2D(x + v.dx, y + v.dy)
   }
 
   override fun toString(): String {
