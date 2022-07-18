@@ -2,7 +2,9 @@
 package galaxyraiders.core.physics
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import kotlin.math.acos
 import kotlin.math.pow
+import kotlin.math.sign
 import kotlin.math.sqrt
 
 @JsonIgnoreProperties("unit", "normal", "degree", "magnitude")
@@ -15,7 +17,15 @@ data class Vector2D(val dx: Double, val dy: Double) {
     get() = sqrt(dx.pow(2) + dy.pow(2))
 
   val radiant: Double
-    get() = INVALID_DOUBLE
+    get() {
+      // Calculates angle between this vector and the positive x semi-axis.
+      val unitEndpoint = Point2D(unit.dx, unit.dy)
+      val angleSign = sign(unit.dy)
+      // This formula is obtained from the law of cosines, applied to
+      // the triangle formed by points (0, 0), (1, 0) and unitEndpoint.
+      val largestSize = unitEndpoint.distance(Point2D(1.0, 0.0))
+      return angleSign * acos(1 - largestSize.pow(2) / 2.0)
+    }
 
   val degree: Double
     get() = INVALID_DOUBLE
