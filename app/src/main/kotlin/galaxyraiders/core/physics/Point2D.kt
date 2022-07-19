@@ -1,6 +1,7 @@
 @file:Suppress("UNUSED_PARAMETER") // <- REMOVE
 package galaxyraiders.core.physics
 
+import kotlin.math.abs
 import kotlin.math.pow
 import kotlin.math.sqrt
 
@@ -22,7 +23,7 @@ data class Point2D(val x: Double, val y: Double) {
   }
 
   fun impactVector(p: Point2D): Vector2D {
-    return INVALID_VECTOR
+    return Vector2D(abs(x - p.x), abs(y - p.y))
   }
 
   fun impactDirection(p: Point2D): Vector2D {
