@@ -36,7 +36,8 @@ data class Vector2D(val dx: Double, val dy: Double) {
     get() = this / this.magnitude
 
   val normal: Vector2D
-    get() = INVALID_VECTOR
+    // given by right-hand rule.
+    get() = Vector2D(unit.dy, -unit.dx)
 
   operator fun times(scalar: Double): Vector2D {
     return Vector2D(dx * scalar, dy * scalar)
