@@ -5,6 +5,8 @@ import galaxyraiders.core.physics.Point2D
 import galaxyraiders.core.physics.Vector2D
 import galaxyraiders.ports.RandomGenerator
 
+const val EXPLOSION_RADIUS = 5.0
+
 object SpaceFieldConfig {
   private val config = Config(prefix = "GR__CORE__GAME__SPACE_FIELD__")
 
@@ -54,6 +56,10 @@ data class SpaceField(val width: Int, val height: Int, val generator: RandomGene
 
   fun moveAsteroids() {
     this.asteroids.forEach { it.move() }
+  }
+
+  fun generateExplosion(position: Point2D) {
+    explosions += Explosion(position, EXPLOSION_RADIUS)
   }
 
   fun generateMissile() {

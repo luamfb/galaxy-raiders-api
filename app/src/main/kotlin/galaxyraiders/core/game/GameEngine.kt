@@ -1,6 +1,7 @@
 package galaxyraiders.core.game
 
 import galaxyraiders.Config
+import galaxyraiders.core.physics.Point2D
 import galaxyraiders.ports.RandomGenerator
 import galaxyraiders.ports.ui.Controller
 import galaxyraiders.ports.ui.Controller.PlayerCommand
@@ -80,8 +81,20 @@ class GameEngine(
     if (!this.playing) return
     this.handleCollisions()
     this.moveSpaceObjects()
+    this.handleExplosions()
     this.trimSpaceObjects()
     this.generateAsteroids()
+  }
+
+  private fun handleExplosions() {
+    this.field.missiles.forEach { missile ->
+      this.field.asteroids.forEach { asteroid ->
+        if (missile.impacts(asteroid)) {
+          val explosionCenter = Point2D(asteroid.center.x, asteroid.center.y)
+          this.field.generateExplosion(explosionCenter)
+        }
+      }
+    }
   }
 
   fun handleCollisions() {
