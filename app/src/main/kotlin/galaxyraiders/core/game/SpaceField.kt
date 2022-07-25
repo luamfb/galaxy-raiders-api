@@ -82,6 +82,13 @@ data class SpaceField(val width: Int, val height: Int, val generator: RandomGene
     }
   }
 
+  fun removeStaleExplosions() {
+    this.explosions = this.explosions.filter {
+        explosion: Explosion ->
+      explosion.countdown > 0
+    }
+  }
+
   private fun initializeShip(): SpaceShip {
     return SpaceShip(
       initialPosition = standardShipPosition(),

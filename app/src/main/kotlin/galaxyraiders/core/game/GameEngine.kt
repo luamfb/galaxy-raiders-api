@@ -87,6 +87,11 @@ class GameEngine(
   }
 
   private fun handleExplosions() {
+    this.field.explosions.forEach { explosion ->
+      explosion.decreaseCountdown()
+    }
+    this.field.removeStaleExplosions()
+
     this.field.missiles.forEach { missile ->
       this.field.asteroids.forEach { asteroid ->
         if (missile.impacts(asteroid)) {
